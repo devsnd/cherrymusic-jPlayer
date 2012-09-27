@@ -36,7 +36,11 @@
 
 		// Setup the css selectors for the extra interface items used by the playlist.
 		this.cssSelector.title = this.cssSelector.cssSelectorAncestor + " .jp-title"; // Note that the text is written to the decendant li node.
-		this.cssSelector.playlist = this.cssSelector.cssSelectorAncestor + " .jp-playlist";
+		if(this.options.playlistOptions.playlistSelector) {
+			this.cssSelector.playlist = this.options.playlistOptions.playlistSelector;
+		} else {
+			this.cssSelector.playlist = this.cssSelector.cssSelectorAncestor + " .jp-playlist";
+		}
 		this.cssSelector.next = this.cssSelector.cssSelectorAncestor + " .jp-next";
 		this.cssSelector.previous = this.cssSelector.cssSelectorAncestor + " .jp-previous";
 		this.cssSelector.shuffle = this.cssSelector.cssSelectorAncestor + " .jp-shuffle";
@@ -129,7 +133,8 @@
 				itemClass: "jp-playlist-item",
 				freeGroupClass: "jp-free-media",
 				freeItemClass: "jp-playlist-item-free",
-				removeItemClass: "jp-playlist-item-remove"
+				removeItemClass: "jp-playlist-item-remove",
+				playlistSelector: false,
 			}
 		},
 		option: function(option, value) { // For changing playlist options only
